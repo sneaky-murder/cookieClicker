@@ -23,11 +23,19 @@
     height: 144px;
     border-radius: 50%;
     border: none;
-    margin-top: 25vh;
+    margin-top: 2vh;
 }
 #counter {
     padding-top: 10vh;
     color: #eeee;
     font-family: Courier;
     font-size: 50px;
+}
+#plusOne {
+    margin-top: 25vh;
+    display: absolute;
+    color: #eeee;
+    font-family: Courier;
+    font-size: 30px;
+    opacity: 0;
 }
