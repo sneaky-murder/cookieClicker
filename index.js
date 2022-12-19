@@ -1,8 +1,11 @@
 // [MAIN GAME] \\
 //aquiring the needed html elements
+const container = document.getElementById('container')
 const cookie = document.getElementById('cookie');
 const counterElement = document.getElementById('counter');
 const plusOne = document.getElementById('plusOne');
+const clearPopUp = document.getElementById('clearPopUp');
+const clearPopUpButtonsContainer = document.getElementById('clearPopUpButtonsContainer');
 //defining variable to keep track of when the user last clicked the cookie
 var lastTriggered = Date.now();
 var clickStreak = 0;
@@ -53,6 +56,23 @@ function stopStreak(){
     plusOne.style.opacity = '0';
     plusOne.innerHTML = clickStreak;
 }
+//making the pop up apear to ask if the user is sure they want to clear all progress
+function clearProgress(){
+    clearPopUp.style.display = 'flex';
+    container.style.filter = 'blur(5px)';
+}
+//if yes
+function clearYes (){
+    localStorage.setItem('counter', '0');
+    localStorage.setItem('upgrade', '1');
+    localStorage.setItem('upgradePrice', '10');
+    location.reload();
+}
+//if no
+function clearNo(){
+    clearPopUp.style.display = 'none';
+    container.style.filter = 'blur(0px)';
+}
 
 // [UPGRADE ADDON] \\
 const upgradeButton = document.getElementById('upgrade');
@@ -73,5 +93,5 @@ function UpgradeHandler(){
 }
 
 function UpdateUpgradeButton(){
-    upgradeButton.innerHTML = `upgrade: ${upgrade++}(${upgradePrice}🍪)`;
+    upgradeButton.innerHTML = `upgrade: ${upgrade+1}(${upgradePrice}🍪)`;
 }

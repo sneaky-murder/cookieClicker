@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="./stylesheet.css">
     </head>
     <body>
+        <button id="clearProgress" onclick="clearProgress()">Clear Progress</button>
         <div id="container">
             <h1 id="title">Click to begin!</h1>
             <p id="plusOne">0</p>
@@ -12,7 +13,15 @@
             <button id="upgrade" onclick="UpgradeHandler()"></button>
             <p id="counter">0</p>
         </div>
-
+        <div id="clearPopUp">
+            <h1 id="popUpTitle">Clear Progress</h1>
+            <p id="popUpDescription">Are you sure you want to clear all your progress?<br>This is irrevertable and can not be undone.</p>
+            <p id="popUpInstruction">Unless you memorize your current data and manually add it back into your localStorage.</p>
+            <div id="clearPopUpButtonsContainer">
+                <button onclick="clearYes()">yes</button>
+                <button onclick="clearNo()">no</button>
+            </div>
+        </div>
         <script src="./index.js"></script>
     </body>
 </html>
