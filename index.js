@@ -1,3 +1,4 @@
+// [MAIN GAME] \\
 //aquiring the needed html elements
 const cookie = document.getElementById('cookie');
 const counterElement = document.getElementById('counter');
@@ -10,31 +11,39 @@ var clickStreak = 0;
 if(localStorage.getItem('counter')) {
     //aquiring the saved cookies from localStorage
     var counter = parseInt(localStorage.getItem('counter'));
+    var upgrade = parseInt(localStorage.getItem('upgrade'));
+    var upgradePrice = parseInt(localStorage.getItem('upgradePrice'))
     counterElement.innerHTML = counter;
 }else {
     localStorage.setItem('counter', '0');
+    localStorage.setItem('upgrade', '1');
+    localStorage.setItem('upgradePrice', '10')
     location.reload();
 }
 
 //checking if the player has lost thier click streak every 0.1s
 setInterval(() => {
+    counter = parseInt(localStorage.getItem('counter'));
+    upgrade = parseInt(localStorage.getItem('upgrade'));
+    upgradePrice = parseInt(localStorage.getItem('upgradePrice'));
+
     if(Date.now() - lastTriggered > 750){
         stopStreak();
     }
-}, 100);
+}, 250);
 
 //function gets triggered on cookie clicked
 function UpdateCounter(){
     lastTriggered = Date.now();
     addStreak();
-    counter++;
+    counter += upgrade;
     //updating localStorage
     localStorage.setItem('counter', counter);
     counterElement.innerHTML = counter;
 }
 //add to the click steak when you keep clicking
 function addStreak(){
-    clickStreak++;
+    clickStreak += upgrade;
     plusOne.style.opacity = '100';
     plusOne.innerHTML = '+' + clickStreak;
 }
@@ -43,4 +52,26 @@ function stopStreak(){
     clickStreak = 0;
     plusOne.style.opacity = '0';
     plusOne.innerHTML = clickStreak;
+}
+
+// [UPGRADE ADDON] \\
+const upgradeButton = document.getElementById('upgrade');
+
+UpdateUpgradeButton();
+
+function UpgradeHandler(){
+    if(counter >= upgradePrice) {
+        counter -= upgradePrice;
+        localStorage.setItem('counter', counter);
+        upgrade++;
+        localStorage.setItem('upgrade', upgrade);
+        upgradePrice += Math.floor(Math.random() * upgrade * upgrade + 10 * upgrade);
+        localStorage.setItem('upgradePrice', upgradePrice);
+        UpdateUpgradeButton();
+        counterElement.innerHTML = counter;
+    }
+}
+
+function UpdateUpgradeButton(){
+    upgradeButton.innerHTML = `upgrade: ${upgrade++}(${upgradePrice}🍪)`;
 }

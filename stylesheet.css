@@ -24,6 +24,8 @@
     border-radius: 50%;
     border: none;
     margin-top: 2vh;
+    padding-bottom: 144px;
+    margin-bottom: 2vh;
 }
 #counter {
     padding-top: 10vh;
@@ -38,4 +40,15 @@
     font-family: Courier;
     font-size: 30px;
     opacity: 0;
+}
+#upgrade {
+    display: absolute;
+    width: 200px;
+    height: 50px;
+    background-color: #444;
+    border: none;
+    border-radius: 15px;
+    color: #eeee;
+    font-family: Courier;
+    font-size: 15px;
 }
